@@ -1,35 +1,7 @@
 import appConfig from '../config.json';
-
+import React from 'react';
+import {useRouter} from 'next/router';
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
-
-function GlobalStyle() {
-    return (
-        <style global jsx>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          list-style: none;
-        }
-        body {
-          font-family: 'Open Sans', sans-serif;
-        }
-        /* App fit Height */ 
-        html, body, #__next {
-          min-height: 100vh;
-          display: flex;
-          flex: 1;
-        }
-        #__next {
-          flex: 1;
-        }
-        #__next > * {
-          flex: 1;
-        }
-        /* ./App fit Height */ 
-      `}</style>
-    );
-}
 
 function Titulo(props) {
     //console.log(props.children);
@@ -66,11 +38,14 @@ export default HomePage
 */
 
 export default function PaginaInicial() {
-    const username = '40fathoms';
+    //const username = '40fathoms';
+
+    //React hooks:
+    const [username, setUsername] = React.useState('40fathoms');
+    const roteamento = useRouter(); //useRouter is part of Next.js
 
     return (
         <>
-            <GlobalStyle />
             <Box
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -97,6 +72,11 @@ export default function PaginaInicial() {
                     {/* Formulário */}
                     <Box
                         as="form"
+                        onSubmit={function(e){
+                            e.preventDefault();
+                            roteamento.push('/chat');
+                            //window.location.href = "/chat"
+                        }}
                         styleSheet={{
                             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                             width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -107,7 +87,17 @@ export default function PaginaInicial() {
                             {appConfig.name}
                         </Text>
 
+                        {/* <input 
+                        type="text" 
+                        value={username} 
+                        onChange={function(e){
+                            setUsername(e.target.value);
+                        }} /> */}
                         <TextField
+                            value={username} 
+                            onChange={function(e){
+                                setUsername(e.target.value);
+                            }}
                             fullWidth
                             textFieldColors={{
                                 neutral: {
@@ -120,7 +110,7 @@ export default function PaginaInicial() {
                         />
                         <Button
                             type='submit'
-                            label='Entrar'
+                            label='Enter'
                             fullWidth
                             buttonColors={{
                                 contrastColor: appConfig.theme.colors.neutrals["000"],
