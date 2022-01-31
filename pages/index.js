@@ -4,7 +4,6 @@ import {useRouter} from 'next/router';
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 
 function Titulo(props) {
-    //console.log(props.children);
 
     const Tag = props.tag || 'h1';
     return (
@@ -22,23 +21,7 @@ function Titulo(props) {
     );
 }
 
-
-// Componente React
-/*function HomePage() {
-    return (
-        <div>
-            <GlobalStyle />
-            <Title tag="h2">Welcome back!</Title>
-            <h2>Discord</h2>
-        </div>
-    )
-}
-
-export default HomePage
-*/
-
 export default function PaginaInicial() {
-    //const username = '40fathoms';
 
     //React hooks:
     const [username, setUsername] = React.useState('40fathoms');
@@ -74,7 +57,7 @@ export default function PaginaInicial() {
                         as="form"
                         onSubmit={function(e){
                             e.preventDefault();
-                            roteamento.push('/chat');
+                            roteamento.push(`/chat?username=${username}`);
                             //window.location.href = "/chat"
                         }}
                         styleSheet={{
@@ -86,13 +69,7 @@ export default function PaginaInicial() {
                         <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
                             {appConfig.name}
                         </Text>
-
-                        {/* <input 
-                        type="text" 
-                        value={username} 
-                        onChange={function(e){
-                            setUsername(e.target.value);
-                        }} /> */}
+                        
                         <TextField
                             value={username} 
                             onChange={function(e){

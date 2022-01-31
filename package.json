@@ -5,6 +5,7 @@
   "license": "y",
   "dependencies": {
     "@skynexui/components": "^1.24.2",
+    "@supabase/supabase-js": "^1.29.4",
     "next": "^12.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -14,5 +15,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
-  }
+  },
+  "repository": "https://github.com/40fathoms/aluracord.git",
+  "author": "João Paulo Martins <jpamdev@gmail.com>"
 }
